@@ -1,0 +1,25 @@
+{
+  "collections":
+    [
+      {
+        "cardImg": "require('../assets/ballIcon.png')",
+        "cardText": "Objetos"
+      },
+      {
+        "cardImg": "require('../assets/colorsIcon.png')",
+        "cardText": "Cores"
+      },
+      {
+        "cardImg": "require('../assets/bearIcon.png')",
+        "cardText": "Animais"
+      },
+      {
+        "cardImg": "require('../assets/treeIcon.png')",
+        "cardText": "Adjetivos"
+      },
+      {
+        "cardImg": "require('../assets/arrowIcon.png')",
+        "cardText": "Pronomes"
+      }
+    ]
+}

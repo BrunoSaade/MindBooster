@@ -12,12 +12,12 @@ import {
   Keyboard
 }from 'react-native';
 
-import Ionicons from '@expo/vector-icons';
+// import Ionicons from '@expo/vector-icons';
 
 export default function Register() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <KeyboardAvoidingView style={styles.background}>
+      <View style={styles.background}> 
         {/* <View style={styles.containerLogo}>
           <Image style={styles.logo}
             source={require('../assets/mindBoosterLogo.png')}
@@ -51,7 +51,7 @@ export default function Register() {
             <Text style={styles.btnText}>CADASTRAR</Text>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </TouchableWithoutFeedback>
   );
 }

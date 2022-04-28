@@ -21,6 +21,10 @@ target 'MindBooster' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'MindBoosterTests' do
     inherit! :complete
     # Pods for testing

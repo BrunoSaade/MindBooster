@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView, 
   View, 
   Image, 
-  TextInput, 
   TouchableOpacity, 
   Text, 
   StyleSheet,
@@ -13,7 +12,19 @@ import {
   Keyboard,
 }from 'react-native';
 
+import { TextInput } from 'react-native-paper';
+import 'react-native-gesture-handler';
+import Logo from '../components/Logo'
+
+
 export default function Login({navigation}) {
+
+  const login = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{name: "Collections"}]
+    })
+  }
 
   const register = () => {
     navigation.reset({
@@ -24,18 +35,19 @@ export default function Login({navigation}) {
 
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [showPassword, setShowPassword] = useState(true)
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <KeyboardAvoidingView style={styles.background}>
+      <View style={styles.background}>
         <View style={styles.containerLogo}>
-          <Image style={styles.logo}
-            source={require('../assets/mindBoosterLogo.png')}
-          />
+          <Logo logoSize={132}/>
+          <Text style={styles.containerLogoText}>MindBooster</Text>
         </View>
         <View style={styles.container}>
           <TextInput 
-            style={[styles.input, {marginBottom: 11}]}
+            label="E-mail"
+            style={[styles.input, {marginBottom: 11, marginTop: 60}]}
             placeholder='Email'
             autoCorrect={false}
             onChangeText={value => setEmail(value)}
@@ -43,27 +55,44 @@ export default function Login({navigation}) {
           />
 
           <TextInput 
+            label="Senha"
             style={styles.input}
             placeholder='Senha'
             autoCorrect={false}
             onChangeText={value => setPassword(value)}
-            secureTextEntry={true}
+            secureTextEntry={showPassword}
+            right={ 
+              showPassword ?  
+              <TextInput.Icon 
+                name="eye" 
+                size={25} 
+                color="black" 
+                onPress={() => setShowPassword(!showPassword)}
+              /> 
+                :  
+              <TextInput.Icon 
+                name="eye-off" 
+                size={25} 
+                color="black" 
+                onPress={() => setShowPassword(!showPassword)}
+              />  
+            }
           />
           <Text style={[{color: 'white'}, styles.textForgotPassword]}
             onPress={() => Linking.openURL('http://google.com')}>
             Esqueci a senha
           </Text>
-          <TouchableOpacity style={styles.btnSubmit}>
+          <TouchableOpacity style={styles.btnSubmit} onPress={() => login()}>
             <Text style={styles.btnText}>ENTRAR</Text>
           </TouchableOpacity>
 
         </View>
         <View style={styles.container}>
-          <TouchableOpacity style={styles.btnRegister} onPress={() => register()}>
+          <TouchableOpacity style={[styles.btnRegister, {marginTop: 90}]} onPress={() => register()}>
             <Text style={styles.btnText}>CADASTRE-SE</Text>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </TouchableWithoutFeedback>
   );
 }
@@ -78,7 +107,8 @@ const styles = StyleSheet.create({
   },
   containerLogo: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   logo: {
     width: 133,
@@ -97,8 +127,6 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.8705882352941177 )',
     fontSize: 16,
     borderRadius: 3,
-    paddingLeft: 16,
-    paddingTop: 26
   },
   btnSubmit: {
     width: 335,
@@ -107,6 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
+    borderRadius: 3,
   },
   btnText: {
     color: '#ffffff',
@@ -118,11 +147,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#b58d97',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 3,
   },
   textForgotPassword: {
     alignSelf: 'flex-end',
-    paddingEnd: 10,
+    paddingEnd: 22,
     marginTop: 8,
     fontSize: 14,
+  },
+  containerLogoText: {
+    fontSize: 48,
+    color: 'white',
+    marginTop: -20
   }
 });
